@@ -34,8 +34,6 @@ public class GameInput : MonoBehaviour
             playerInputActions.Player.Jump.performed -= Jump_performed;
             playerInputActions.Dispose();
         }
-
-        
     }
 
     private void Jump_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)

@@ -1,58 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4610992213532568478
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4794241516525686762}
-  - component: {fileID: 6211760030756648497}
-  m_Layer: 7
-  m_Name: ScoreZone
-  m_TagString: Untagged
-  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4794241516525686762
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4610992213532568478}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6306065745845353690}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6211760030756648497
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4610992213532568478}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3, y: 40, z: 0.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5658513351523864451
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,7 +11,7 @@ GameObject:
   - component: {fileID: 6306065745845353690}
   - component: {fileID: -6544270741935814042}
   m_Layer: 0
-  m_Name: Pipes
+  m_Name: NormalPipesClosed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +31,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1413996958442355315}
-  - {fileID: 4794241516525686762}
   - {fileID: 1250261719639157960}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -117,7 +63,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea344f834ac5f554fbebcb42bfff44de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 80
+      value: 58
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea344f834ac5f554fbebcb42bfff44de, type: 3}
       propertyPath: m_LocalPosition.z
@@ -196,7 +142,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 16.077854, y: 55.050396, z: 22.47488}
+  m_Size: {x: 16.077854, y: 55.050396, z: 22}
   m_Center: {x: -0.0000019073486, y: 27.525187, z: 0}
 --- !u!1001 &1644776029373401891
 PrefabInstance:
@@ -212,7 +158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea344f834ac5f554fbebcb42bfff44de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -80
+      value: -58
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea344f834ac5f554fbebcb42bfff44de, type: 3}
       propertyPath: m_LocalPosition.z
@@ -291,5 +237,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 16.077854, y: 55.050396, z: 22.47488}
+  m_Size: {x: 16.077854, y: 55.050396, z: 22}
   m_Center: {x: -0.0000019073486, y: 27.525187, z: 0}

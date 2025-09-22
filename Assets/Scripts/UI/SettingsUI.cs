@@ -76,12 +76,12 @@ public class SettingsUI : MonoBehaviour
 
     private void UpdateVisual()
     {
-        sensitivityValueText.text = sensitivity.ToString();
+        /*sensitivityValueText.text = sensitivity.ToString();
         sensitivitySlider.value = sensitivity;
         musicVolumeText.text = MusicManager.Instance.GetVolume().ToString();
         musicSlider.value = MusicManager.Instance.GetVolume();
         soundEffectsVolumeText.text = SoundManager.Instance.GetVolume().ToString();
-        soundEffectsSlider.value = SoundManager.Instance.GetVolume();
+        soundEffectsSlider.value = SoundManager.Instance.GetVolume();*/
     }
 
     public int GetSensitivity()

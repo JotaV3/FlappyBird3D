@@ -14,8 +14,6 @@ public class GameOverUI : MonoBehaviour
     {
         Instance = this;
 
-        //Hide();
-
         restartButton.onClick.AddListener(() =>
         {
             Loader.LoadScene(Loader.Scene.GameScene);

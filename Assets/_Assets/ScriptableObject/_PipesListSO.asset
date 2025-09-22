@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62ec7ef382e0529468a61db9df0c9da0, type: 3}
+  m_Name: _PipesListSO
+  m_EditorClassIdentifier: 
+  pipesSOList:
+  - {fileID: 11400000, guid: a4f8824cbf352ba4fa272cdfa8fd1ff0, type: 2}

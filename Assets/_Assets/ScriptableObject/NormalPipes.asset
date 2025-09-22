@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68d6b529454d86e43bb483e0705517e5, type: 3}
+  m_Name: NormalPipes
+  m_EditorClassIdentifier: 
+  pipesOpenPrefab: {fileID: 5658513351523864451, guid: 3b2918181bcb11e449841d330b949b17, type: 3}
+  pipesClosedPrefab: {fileID: 5658513351523864451, guid: b776fdb57d08f184cbc09101d45a1c5e, type: 3}
