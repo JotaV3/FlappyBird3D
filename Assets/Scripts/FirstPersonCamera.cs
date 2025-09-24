@@ -13,7 +13,7 @@ public class FirstPersonCamera : MonoBehaviour
     {
         sensitivity = SettingsUI.Instance.GetSensitivity();
 
-        MenuManager.Instance.OnCloseSettingsUI += MenuManager_OnCloseSettingsUI;
+        GameManager.Instance.OnGameUnpaused += GameManager_OnGameUnpaused;
     }
 
     private void Update()
@@ -29,15 +29,7 @@ public class FirstPersonCamera : MonoBehaviour
         playerTransform.Rotate(Vector3.up * mouseX);
     }
 
-    private void OnDestroy()
-    {
-        if (MenuManager.Instance != null)
-        {
-            MenuManager.Instance.OnCloseSettingsUI -= MenuManager_OnCloseSettingsUI;
-        }
-    }
-
-    private void MenuManager_OnCloseSettingsUI(object sender, System.EventArgs e)
+    private void GameManager_OnGameUnpaused(object sender, System.EventArgs e)
     {
         sensitivity = SettingsUI.Instance.GetSensitivity();
     }

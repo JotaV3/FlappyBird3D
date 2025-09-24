@@ -21,6 +21,8 @@ public class SettingsUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI soundEffectsVolumeText;
     [SerializeField] private Button backButton;
 
+    private Action onBackButtonAction;
+
     private int sensitivity;
 
     private void Awake()
@@ -51,21 +53,15 @@ public class SettingsUI : MonoBehaviour
 
         backButton.onClick.AddListener(() =>
         {
-            if(Loader.TryGetScene(Loader.Scene.GameScene))
-            {
-                MenuManager.Instance.CloseSettingsUI();
-            }
-            else
-            {
-                Hide();
-            }                
+            Hide();            
         });
     }
 
     private void Start()
     {
-        Hide();
         UpdateVisual();
+
+        Hide();
     }
 
     private void OnDisable()
@@ -89,8 +85,10 @@ public class SettingsUI : MonoBehaviour
         return sensitivity;
     }
 
-    public void Show()
+    public void Show(Action onBackButtonAction)
     {
+        this.onBackButtonAction = onBackButtonAction;
+
         gameObject.SetActive(true);
     }
 

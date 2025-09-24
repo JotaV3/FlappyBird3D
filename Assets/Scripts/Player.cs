@@ -8,12 +8,13 @@ public class Player : MonoBehaviour
     public static Player Instance { get; private set; }
 
     [SerializeField] private LayerMask pipeLayerMask;
-    [SerializeField] private float jumpForce = 10f;
-    [SerializeField] private float customGravity = 60f;
+    [SerializeField] private float jumpForce = 30f;
+    [SerializeField] private float customGravity = 1200f;
+    [SerializeField] private float moveSpeed = 3f;
 
     public event EventHandler OnPlayerHitPipe;
 
-    private Rigidbody rb;
+    private Rigidbody rb;   
 
     private void Awake()
     {
@@ -27,6 +28,20 @@ public class Player : MonoBehaviour
     private void Start()
     {
         GameInput.Instance.OnJump += GameInput_OnJump;
+    }
+
+    private void Update()
+    {
+        HandleMovement();
+    }
+
+    private void FixedUpdate()
+    {
+        // se o jogo não estiver acontecendo return
+        if (!GameManager.Instance.IsGamePlaying()) return;
+
+        // Faz o player cair constantemente
+        rb.AddForce(Vector3.down * customGravity * Time.deltaTime, ForceMode.Acceleration);
     }
 
     // Encontou no cano
@@ -46,6 +61,13 @@ public class Player : MonoBehaviour
             GameInput.Instance.OnJump -= GameInput_OnJump;
         }
     }
+    
+    private void HandleMovement()
+    {
+        Vector3 moveDir = GameInput.Instance.GetInputNormalized();
+
+        transform.position += moveDir * moveSpeed * Time.deltaTime;
+    }
 
     private void GameInput_OnJump(object sender, System.EventArgs e)
     {
@@ -59,14 +81,5 @@ public class Player : MonoBehaviour
         rb.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
 
         SoundManager.Instance.PlayJumpSound(transform.position);
-    }
-
-    private void FixedUpdate()
-    {
-        // se o jogo não estiver acontecendo return
-        if (!GameManager.Instance.IsGamePlaying()) return;
-
-        // Faz o player cair constantemente
-        rb.AddForce(Vector3.down * customGravity * Time.deltaTime, ForceMode.Acceleration);
     }
 }

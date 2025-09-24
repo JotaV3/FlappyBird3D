@@ -13,33 +13,10 @@ public class MusicManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        } 
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
 
         audioSource = GetComponent<AudioSource>();
-
         volume = PlayerPrefs.GetFloat(PLAYER_PREFS_MUSIC_VOLUME, DEFAULT_MUSIC_VOLUME);
-    }
-
-    private void Start()
-    {
-        if (Loader.TryGetScene(Loader.Scene.GameScene))
-        {
-            MenuManager.Instance.OnCloseSettingsUI += MenuManager_OnCloseSettingsUI;
-        }
-    }
-
-    private void MenuManager_OnCloseSettingsUI(object sender, System.EventArgs e)
-    {
-        PlayerPrefs.SetFloat(PLAYER_PREFS_MUSIC_VOLUME, this.volume);
-        PlayerPrefs.Save();
     }
 
     public void ChangeVolume(float volume)
@@ -47,7 +24,10 @@ public class MusicManager : MonoBehaviour
         // normaliza o volume
         this.volume = volume / 100;
 
-        audioSource.volume = this.volume;       
+        audioSource.volume = this.volume;
+
+        PlayerPrefs.SetFloat(PLAYER_PREFS_MUSIC_VOLUME, this.volume);
+        PlayerPrefs.Save();
     }
 
     public float GetVolume()

@@ -7,6 +7,7 @@ public class GameInput : MonoBehaviour
     public static GameInput Instance { get; private set; }
 
     public event EventHandler OnJump;
+    public event EventHandler OnPauseAction;
 
     private PlayerInputActions playerInputActions;
     private Vector2 lookInput;
@@ -18,11 +19,8 @@ public class GameInput : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         playerInputActions.Player.Enable();
 
-        // jump
         playerInputActions.Player.Jump.performed += Jump_performed;
-
-        // player movement
-        //playerInputActions.Player.Move.performed += Move_performed;
+        playerInputActions.Player.Pause.performed += Pause_performed;
 
         // mouse movement
         playerInputActions.Player.Look.performed += ctx => lookInput = ctx.ReadValue<Vector2>();
@@ -34,6 +32,21 @@ public class GameInput : MonoBehaviour
         GameManager.Instance.OnGamePaused += GameManager_OnGamePaused;
         GameManager.Instance.OnGameUnpaused += GameManager_OnGameUnpaused;
         GameManager.Instance.OnStateChanged += GameManager_OnStateChanged;
+    }
+
+    private void OnDestroy()
+    {
+        if(playerInputActions != null)
+        {
+            playerInputActions.Player.Disable();
+            playerInputActions.Player.Jump.performed -= Jump_performed;
+            playerInputActions.Dispose();
+        }
+    }
+
+    private void Pause_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnPauseAction?.Invoke(this, EventArgs.Empty);
     }
 
     private void GameManager_OnStateChanged(object sender, EventArgs e)
@@ -54,16 +67,6 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.Jump.Disable();
     }
 
-    private void OnDestroy()
-    {
-        if(playerInputActions != null)
-        {
-            playerInputActions.Player.Disable();
-            playerInputActions.Player.Jump.performed -= Jump_performed;
-            playerInputActions.Dispose();
-        }
-    }
-
     private void Jump_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         OnJump?.Invoke(this, EventArgs.Empty);
@@ -77,5 +80,11 @@ public class GameInput : MonoBehaviour
     public Vector2 GetLookInput()
     {
         return lookInput;
+    }
+
+    public Vector3 GetInputNormalized()
+    {
+        Vector3 inputVector = playerInputActions.Player.Move.ReadValue<Vector3>();
+        return inputVector;
     }
 }

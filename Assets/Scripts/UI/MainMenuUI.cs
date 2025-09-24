@@ -4,10 +4,10 @@ using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
-    [SerializeField] Button playButton;
-    [SerializeField] Button settingsButton;
-    [SerializeField] Button quitButton;
-    [SerializeField] SettingsUI settingsUI;
+    [SerializeField] private Button playButton;
+    [SerializeField] private Button settingsButton;
+    [SerializeField] private Button quitButton;
+    [SerializeField] private SettingsUI settingsUI;
 
     private void Awake()
     {
@@ -20,7 +20,8 @@ public class MainMenuUI : MonoBehaviour
 
         settingsButton.onClick.AddListener(() =>
         {
-            settingsUI.Show();
+            Hide();
+            SettingsUI.Instance.Show(Show);
         });
 
         quitButton.onClick.AddListener(() =>

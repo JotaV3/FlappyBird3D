@@ -17,7 +17,8 @@ public class MenuUI : MonoBehaviour
 
         settingsButton.onClick.AddListener(() =>
         {
-            MenuManager.Instance.OpenSettingsUI();
+            Hide();
+            SettingsUI.Instance.Show(Show);
         });
 
         mainMenuButton.onClick.AddListener(() =>
@@ -28,7 +29,20 @@ public class MenuUI : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.OnGamePaused += GameManager_OnGamePaused;
+        GameManager.Instance.OnGameUnpaused += GameManager_OnGameUnpaused;
+
         Hide();
+    }
+
+    private void GameManager_OnGameUnpaused(object sender, System.EventArgs e)
+    {
+        Hide();
+    }
+
+    private void GameManager_OnGamePaused(object sender, System.EventArgs e)
+    {
+        Show();
     }
 
     public void Show()

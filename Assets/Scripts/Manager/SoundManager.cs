@@ -15,32 +15,10 @@ public class SoundManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
 
-        volume = PlayerPrefs.GetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, DEFAULT_SOUND_EFFECTS_VOLUME);
         audioSource = GetComponent<AudioSource>();
-    }
-
-    private void Start()
-    {
-        if(Loader.TryGetScene(Loader.Scene.GameScene))
-        {
-            MenuManager.Instance.OnCloseSettingsUI += MenuManager_OnCloseSettingsUI;
-        }
-    }
-
-    private void MenuManager_OnCloseSettingsUI(object sender, System.EventArgs e)
-    {
-        PlayerPrefs.SetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, volume);
-        PlayerPrefs.Save();
+        volume = PlayerPrefs.GetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, DEFAULT_SOUND_EFFECTS_VOLUME);     
     }
 
     public void PlayJumpSound(Vector3 position)
@@ -62,6 +40,9 @@ public class SoundManager : MonoBehaviour
     {
         // normaliza o volume
         this.volume = volume / 100;
+
+        PlayerPrefs.SetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, volume);
+        PlayerPrefs.Save();
     }
 
     public float GetVolume()
