@@ -12,6 +12,19 @@ public class PressSpaceToStartUI : MonoBehaviour
         Show();
     }
 
+    private void Start()
+    {
+        GameManager.Instance.OnStateChanged += GameManager_OnStateChanged;
+    }
+
+    private void GameManager_OnStateChanged(object sender, EventArgs e)
+    {
+        if (GameManager.Instance.IsGamePlaying())
+        {
+            Hide();
+        }
+    }
+
     public void Show()
     {
         gameObject.SetActive(true);

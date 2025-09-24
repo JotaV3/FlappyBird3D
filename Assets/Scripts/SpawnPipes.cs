@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class SpawnPipes : MonoBehaviour
 {
-    [SerializeField] PipesListSO pipesListSO;
-    [SerializeField] Transform[] spawnPoints;
-    [SerializeField] float spawnTimerMax = 3.5f;
-    [SerializeField] float heightOffset = 30f;
+    [SerializeField] private PipesListSO pipesListSO;
+    [SerializeField] private Transform[] spawnPoints;
+    [SerializeField] private float heightOffset = 30f;
 
     private float spawnTimer;
+    private float spawnTimerMax = 3.5f;
 
     private void Update()
     {
@@ -31,7 +31,7 @@ public class SpawnPipes : MonoBehaviour
             float lowestPoint = transform.position.y - heightOffset;
             float highestPoint = transform.position.y + heightOffset;
 
-            // pipes can only be closed if Random.Range returns 0
+            // pipes can only be closed if Random.Range returns 0 and have at least one pipe open
             bool canPipesBeClosed = Random.Range(0, 2) == 0 && pipesClosed < spawnPoints.Length - 1;
             pipesClosed += canPipesBeClosed ? 1 : 0;
 

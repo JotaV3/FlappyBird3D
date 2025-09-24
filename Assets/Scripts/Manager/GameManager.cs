@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         GameInput.Instance.OnJump += GameInput_OnJump;
+        Player.Instance.OnPlayerHitPipe += Player_OnPlayerHitPipe;
     }
 
     private void OnDestroy()
@@ -39,12 +40,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Player_OnPlayerHitPipe(object sender, EventArgs e)
+    {
+        state = State.GameOver;
+        OnStateChanged?.Invoke(this, EventArgs.Empty);
+    }
+
     private void GameInput_OnJump(object sender, EventArgs e)
     {
-        if(IsWaitingToStart() & !isGamePaused)
+        if(IsWaitingToStart())
         {
-            PressSpaceToStartUI.Instance.Hide();
-
             state = State.GamePlaying;
             OnStateChanged?.Invoke(this, EventArgs.Empty);
         }
@@ -64,13 +69,6 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1f;
             OnGameUnpaused?.Invoke(this, EventArgs.Empty);
         }
-    }
-
-    // verificar dps
-    public void GameOver()
-    {
-        state = State.GameOver;
-        OnStateChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public bool IsGameOver()
