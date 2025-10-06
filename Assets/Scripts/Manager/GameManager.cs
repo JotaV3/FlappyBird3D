@@ -29,15 +29,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         GameInput.Instance.OnJump += GameInput_OnJump;
+        GameInput.Instance.OnPauseAction += GameInput_OnPauseAction;
         Player.Instance.OnPlayerHitPipe += Player_OnPlayerHitPipe;
-    }
-
-    private void OnDestroy()
-    {
-        if(GameInput.Instance != null)
-        {
-            GameInput.Instance.OnJump -= GameInput_OnJump;
-        }
     }
 
     private void Player_OnPlayerHitPipe(object sender, EventArgs e)
@@ -53,6 +46,11 @@ public class GameManager : MonoBehaviour
             state = State.GamePlaying;
             OnStateChanged?.Invoke(this, EventArgs.Empty);
         }
+    }
+
+    private void GameInput_OnPauseAction(object sender, EventArgs e)
+    {
+        TogglePauseGame();
     }
 
     public void TogglePauseGame()
@@ -89,5 +87,13 @@ public class GameManager : MonoBehaviour
     public bool GetIsGamePaused()
     {
         return isGamePaused;
+    }
+
+    private void OnDestroy()
+    {
+        if (GameInput.Instance != null)
+        {
+            GameInput.Instance.OnJump -= GameInput_OnJump;
+        }
     }
 }

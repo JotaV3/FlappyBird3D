@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4610992213532568478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4794241516525686762}
+  - component: {fileID: 6211760030756648497}
+  m_Layer: 7
+  m_Name: ScoreZone
+  m_TagString: Untagged
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4794241516525686762
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4610992213532568478}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6306065745845353690}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6211760030756648497
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4610992213532568478}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8, y: 40, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5658513351523864451
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,8 +63,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6306065745845353690}
   - component: {fileID: -6544270741935814042}
+  - component: {fileID: 8848957637878273651}
   m_Layer: 0
-  m_Name: NormalPipesClosed
+  m_Name: _Pipes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,6 +85,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1413996958442355315}
+  - {fileID: 4794241516525686762}
   - {fileID: 1250261719639157960}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -46,9 +101,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e390c8251e1aba14d9b11f0a8890c3eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topPipeTransform: {fileID: 1413996958442355315}
+  lowerPipeTransform: {fileID: 1250261719639157960}
+  closeOffSet: 60
   pipeSpeed: 50
-  deadzone: -50
   point: 1
+--- !u!95 &8848957637878273651
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5658513351523864451}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a12e443126f591b40bbe31b5155f91d8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1447132951481228696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63,7 +142,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea344f834ac5f554fbebcb42bfff44de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 58
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea344f834ac5f554fbebcb42bfff44de, type: 3}
       propertyPath: m_LocalPosition.z
@@ -158,7 +237,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea344f834ac5f554fbebcb42bfff44de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -58
+      value: -80
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea344f834ac5f554fbebcb42bfff44de, type: 3}
       propertyPath: m_LocalPosition.z
@@ -194,7 +273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ea344f834ac5f554fbebcb42bfff44de, type: 3}
       propertyPath: m_Name
-      value: DownPipe
+      value: LowerPipe
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ea344f834ac5f554fbebcb42bfff44de, type: 3}
       propertyPath: m_Layer

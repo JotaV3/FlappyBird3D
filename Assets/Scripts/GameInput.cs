@@ -21,10 +21,6 @@ public class GameInput : MonoBehaviour
 
         playerInputActions.Player.Jump.performed += Jump_performed;
         playerInputActions.Player.Pause.performed += Pause_performed;
-
-        // mouse movement
-        playerInputActions.Player.Look.performed += ctx => lookInput = ctx.ReadValue<Vector2>();
-        playerInputActions.Player.Look.canceled += ctx => lookInput = Vector2.zero;
     }
 
     private void Start()
@@ -79,7 +75,7 @@ public class GameInput : MonoBehaviour
 
     public Vector2 GetLookInput()
     {
-        return lookInput;
+        return playerInputActions.Player.Look.ReadValue<Vector2>(); ;
     }
 
     public Vector3 GetInputNormalized()

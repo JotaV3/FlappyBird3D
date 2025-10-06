@@ -1,6 +1,7 @@
 using System;
 using System.Linq.Expressions;
 using Unity.VisualScripting.Antlr3.Runtime.Tree;
+using UnityEditor;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -8,13 +9,19 @@ public class Player : MonoBehaviour
     public static Player Instance { get; private set; }
 
     [SerializeField] private LayerMask pipeLayerMask;
+
+    [Header("Player movement config")]
     [SerializeField] private float jumpForce = 30f;
     [SerializeField] private float customGravity = 1200f;
     [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float positionXLimit;
+
+    [Header("Camera")]
+    [SerializeField] private Transform cameraOrientation;
 
     public event EventHandler OnPlayerHitPipe;
 
-    private Rigidbody rb;   
+    private Rigidbody rb;
 
     private void Awake()
     {
@@ -40,11 +47,11 @@ public class Player : MonoBehaviour
         // se o jogo não estiver acontecendo return
         if (!GameManager.Instance.IsGamePlaying()) return;
 
-        // Faz o player cair constantemente
+        // player falls slowly
         rb.AddForce(Vector3.down * customGravity * Time.deltaTime, ForceMode.Acceleration);
     }
 
-    // Encontou no cano
+    // hit pipe
     private void OnCollisionEnter(Collision collision)
     {
         // cria um bitmask, o bitmask é um bit referente ao valor da mascara
@@ -53,20 +60,16 @@ public class Player : MonoBehaviour
             OnPlayerHitPipe?.Invoke(this, EventArgs.Empty);
         }
     }
-
-    private void OnDestroy()
-    {
-        if (GameInput.Instance != null)
-        {
-            GameInput.Instance.OnJump -= GameInput_OnJump;
-        }
-    }
     
     private void HandleMovement()
     {
-        Vector3 moveDir = GameInput.Instance.GetInputNormalized();
+        Vector3 inputVector = GameInput.Instance.GetInputNormalized();
+        Vector3 moveDir = rb.transform.forward * inputVector.z + rb.transform.right * inputVector.x;
+        
+        Vector3 targetPosition = rb.position + moveDir * moveSpeed * Time.deltaTime;
+        targetPosition.x = Mathf.Clamp(targetPosition.x, -positionXLimit, positionXLimit);
 
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+        rb.MovePosition(targetPosition);
     }
 
     private void GameInput_OnJump(object sender, System.EventArgs e)

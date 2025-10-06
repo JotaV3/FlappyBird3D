@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: _PipesListSO
   m_EditorClassIdentifier: 
   pipesSOList:
-  - {fileID: 11400000, guid: a4f8824cbf352ba4fa272cdfa8fd1ff0, type: 2}
+  - {fileID: 11400000, guid: 7a8a1ee7cda0ce44d8d20635864d5a6d, type: 2}

@@ -53,14 +53,21 @@ public class SettingsUI : MonoBehaviour
 
         backButton.onClick.AddListener(() =>
         {
-            Hide();            
+            Hide();
+            onBackButtonAction?.Invoke();
         });
     }
 
     private void Start()
     {
+        GameManager.Instance.OnGameUnpaused += GameManager_OnGameUnpaused;
         UpdateVisual();
 
+        Hide();
+    }
+
+    private void GameManager_OnGameUnpaused(object sender, EventArgs e)
+    {
         Hide();
     }
 
@@ -72,12 +79,14 @@ public class SettingsUI : MonoBehaviour
 
     private void UpdateVisual()
     {
-        /*sensitivityValueText.text = sensitivity.ToString();
+        sensitivityValueText.text = sensitivity.ToString();
         sensitivitySlider.value = sensitivity;
+
         musicVolumeText.text = MusicManager.Instance.GetVolume().ToString();
         musicSlider.value = MusicManager.Instance.GetVolume();
+
         soundEffectsVolumeText.text = SoundManager.Instance.GetVolume().ToString();
-        soundEffectsSlider.value = SoundManager.Instance.GetVolume();*/
+        soundEffectsSlider.value = SoundManager.Instance.GetVolume();
     }
 
     public int GetSensitivity()

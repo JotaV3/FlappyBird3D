@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68d6b529454d86e43bb483e0705517e5, type: 3}
+  m_Script: {fileID: 11500000, guid: f29aea92b1746734ba1f592e2bea9991, type: 3}
   m_Name: NormalPipes
   m_EditorClassIdentifier: 
-  pipesOpenPrefab: {fileID: 5658513351523864451, guid: 3b2918181bcb11e449841d330b949b17, type: 3}
-  pipesClosedPrefab: {fileID: 5658513351523864451, guid: b776fdb57d08f184cbc09101d45a1c5e, type: 3}
+  pipesTransform: {fileID: 8894176822239279185, guid: 553218df6d2a08e46a8b2c80f84e933c, type: 3}
+  closeChance: 50
